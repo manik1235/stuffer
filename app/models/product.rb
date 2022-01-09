@@ -10,4 +10,6 @@ class Product < ApplicationRecord
   delegate :name,
     to: :variation,
     prefix: true
+
+  accepts_nested_attributes_for :variations
 end

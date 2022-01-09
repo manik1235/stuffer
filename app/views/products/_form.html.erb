@@ -11,32 +11,67 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
-  </div>
+  <div class="container">
+    <!-- Product Info -->
+    <div class="row">
+      <div class="col-4-xs">
+        <div class="row">
+          <%= form.label :name %>
+        </div>
+        <div class="row">
+          <%= form.text_field :name %>
+        </div>
+      </div>
+      <div class="col-4-xs">
+        <div class="row">
+          <%= form.label :description %>
+        </div>
+        <div class="row">
+          <%= form.text_field :description %>
+        </div>
+      </div>
+      <div class="col-4-xs">
+        <div class="row">
+          <%= form.label :category_id %>
+        </div>
+        <div class="row">
+          <%= form.select :category_id, Category.all.collect { |c| [c.name, c.id] } %>
+        </div>
+      </div>
+    </div>
 
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.text_field :description %>
-  </div>
+    <!-- Variations Header -->
+<% if false %>
+    <div class="row">
+      <div class="col-3">
+        <%= form.label :variation_id %>
+      </div>
+      <div class="col-3">
+        <%= form.label :price %>
+      </div>
+      <div class="col-6"> </div>
+    </div>
+<% end %>
 
-  <div class="field">
-    <%= form.label :price %>
-    <%= form.text_field :price %>
-  </div>
+    <!-- Variations Data -->
+    <% product.variations.each do |variation| %>
+      <%= fields_for :variations, variation do |vform| %>
+        <div class="row">
+          <div class="col-6">
+            <%= vform.select :variation_id, Variation.all.collect { |c| [c.name, c.id] }, selected: variation.id %>
+            <%= vform.text_field :price %>
+          </div>
+          <div class="col-6">
+          </div>
+        </div>
+      <% end %>
+    <% end %>
 
-  <div class="field">
-    <%= form.label :category_id %>
-    <%= form.select :category_id, Category.all.collect { |c| [c.name, c.id] } %>
-  </div>
-
-  <div class="field">
-    <%= form.label :variation_id %>
-    <%= form.select :variation_id, Variation.all.collect { |c| [c.name, c.id] } %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
+    <!-- Submit -->
+    <div class="row">
+      <div class="col-12">
+        <%= form.submit %>
+      </div>
+    </div>
   </div>
 <% end %>
