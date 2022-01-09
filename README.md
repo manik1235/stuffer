@@ -11,4 +11,7 @@ set
 `export STUFFER_SECRET_KEY_BASE=<your key>`
 
 run
+`yarn`
+`rails assets:precompile`
+`./bin/webpack`
 `script/start.sh`
