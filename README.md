@@ -7,3 +7,8 @@
 bundle install
 yarn
 
+set
+`export STUFFER_SECRET_KEY_BASE=<your key>`
+
+run
+`script/start.sh`
